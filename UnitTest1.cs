@@ -47,6 +47,6 @@ public class LoginTests : PageTest
         await inventoryPage.AgregarMochilaAlCarrito();
         await inventoryPage.IrAlCarrito();
 
-        await Expect(carPage.ItemName).ToHaveTextAsync("Sauce Labs Backpack")
+        await Expect(CartPage.ItemName).ToHaveTextAsync("Sauce Labs Backpack")
     }
 }
