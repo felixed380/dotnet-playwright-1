@@ -12,10 +12,10 @@ public class InventoryPage
     {
         _page = page;
         _addToCartBtn = page.Locator("button[data-test='add-to-cart-sauce-labs-backpack']");
-        _carIcon = page.Locator(".shopping_cart_link");
+        _cartIcon = page.Locator(".shopping_cart_link");
     }
 
-    public async Task AgregarMochilaCarrito() => await _addToCartBtn.ClickAsync();
+    public async Task AgregarMochilaAlCarrito() => await _addToCartBtn.ClickAsync();
     public async Task IrAlCarrito() => await _cartIcon.ClickAsync();
-
 }
+

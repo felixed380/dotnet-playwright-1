@@ -29,9 +29,9 @@ public class LoginTests : PageTest
         await loginPage.IrALogin();
         await loginPage.Login("locked_out_user", "secret_sauce");
 
-        var erroMsg = Page.Locator("h3[data-test='error']");
+        var errorMsg = Page.Locator("h3[data-test='error']");
         await Expect(errorMsg).ToBeVisibleAsync();
-        await Expect(erroMsg).ToContainTextAsync("Sorry, this user has been locked out. ");
+        await Expect(errorMsg).ToContainTextAsync("Sorry, this user has been locked out. ");
     }
 
     [Test]
@@ -39,14 +39,19 @@ public class LoginTests : PageTest
     {
         var loginPage = new LoginPage(Page);
         var inventoryPage = new InventoryPage(Page);
-        var CartPage = new CartPage(Page);
+        var cartPage = new CartPage(Page);
 
-        await loginPage.IrAlLogin();
+        await loginPage.IrALogin();
         await loginPage.Login("standard_user", "secret_sauce");
 
         await inventoryPage.AgregarMochilaAlCarrito();
         await inventoryPage.IrAlCarrito();
 
-        await Expect(CartPage.ItemName).ToHaveTextAsync("Sauce Labs Backpack")
+        await Expect(cartPage.ItemName).ToHaveTextAsync("Sauce Labs Backpack");
+
+        await cartPage.IrAlCheckout();
+
+        var title = Page.Locator(".title");
+        await Expect(title).ToHaveTextAsync("Checkout: Your Information");
     }
 }
