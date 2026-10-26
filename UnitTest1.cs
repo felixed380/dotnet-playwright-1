@@ -39,7 +39,7 @@ public class LoginTests : PageTest
     {
         var loginPage = new LoginPage(Page);
         var inventoryPage = new InventoryPage(Page);
-        var cartPage = new CartPage(Page);
+        var CartPage = new CartPage(Page);
 
         await loginPage.IrAlLogin();
         await loginPage.Login("standard_user", "secret_sauce");
